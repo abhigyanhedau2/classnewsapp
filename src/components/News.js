@@ -3,6 +3,8 @@ import NewsItem from './NewsItem'
 
 export class News extends Component {
 
+  defaultImage = "https://acadianakarate.com/wp-content/uploads/2017/04/default-image.jpg"
+
   articles = [
     {
       "source": { "id": "reuters", "name": "Reuters" },
@@ -225,15 +227,12 @@ export class News extends Component {
           <h1 className='text-center'><b>NewsMonkey - Top Headlines</b></h1>
 
           <div className="row">
-            <div className="col-md-4">
-              <NewsItem title="myTitle" description="myDesc" imageURL="https://static01.nyt.com/images/2022/02/27/world/27ukraine-blog-header1/27ukraine-blog-header1-facebookJumbo.jpg" />
-            </div>          
-            <div className="col-md-4">
-              <NewsItem title="myTitle" description="myDesc" />
-            </div>          
-            <div className="col-md-4">
-              <NewsItem title="myTitle" description="myDesc" />
-            </div>          
+            {this.state.articles.map((item) => {
+              return <div className="col-md-4" key={item.url}>
+                       <NewsItem title={item.title} description={item.description === null ? "" : item.description} imageURL={item.urlToImage === null ? this.defaultImage : item.urlToImage} newsURL={item.url}/>
+                     </div> 
+            })}
+                               
           </div>
       </div>
     )
