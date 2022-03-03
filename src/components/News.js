@@ -87,6 +87,27 @@ export class News extends Component {
     }
   }
 
+  buttonColor = () => 
+  {
+    switch (this.props.category) {
+      case "general":
+        return "primary";
+      case "business":
+        return "secondary";
+      case "entertainment":
+        return "warning";
+      case "health":
+        return "info";
+      case "science":
+        return "dark";
+      case "sports":
+        return "success";
+      case "technology":
+        return "danger";    
+      default:
+        break;
+    }
+  }
 
   render() {
     return (
@@ -99,14 +120,14 @@ export class News extends Component {
           <div className="row">
             {!this.state.loading && this.state.articles.map((item) => {
               return <div className="col-md-4" key={item.url}>
-                       <NewsItem title={item.title} description={item.description === null ? "" : item.description} imageURL={item.urlToImage === null ? this.defaultImage : item.urlToImage} newsURL={item.url} source={item.source.name} author={item.author} date={item.publishedAt} />
+                       <NewsItem title={item.title} description={item.description === null ? "" : item.description} imageURL={item.urlToImage === null ? this.defaultImage : item.urlToImage} newsURL={item.url} source={item.source.name} author={item.author} date={item.publishedAt} category={this.props.category} />
                      </div> 
             })}                   
           </div>
 
           <div className="container d-flex justify-content-between">
-            <button disabled={this.state.page <= 1} type="button" className="btn btn-primary" onClick={this.handlePreviousClick} > &#8592; Previous</button>
-            <button disabled={this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className="btn btn-primary" onClick={this.handleNextClick} >Next &#8594; </button>
+            <button disabled={this.state.page <= 1} type="button" className={`btn btn-${this.buttonColor()}`} onClick={this.handlePreviousClick} > &#8592; Previous</button>
+            <button disabled={this.state.page+1 > Math.ceil(this.state.totalResults/this.props.pageSize)} type="button" className={`btn btn-${this.buttonColor()}`} onClick={this.handleNextClick} >Next &#8594; </button>
           </div>
       </div>
     )
