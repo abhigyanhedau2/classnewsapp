@@ -7,9 +7,9 @@ export default class App extends Component {
   render() {
     return (
       <div>
-
+        {/* business entertainment general health science sports technology */}
         <Navbar />
-        <News pageSize="9" />
+        <News pageSize="9" country="in" category="technology" />
 
       </div>
     )
