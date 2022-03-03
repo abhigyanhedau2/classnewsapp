@@ -4,7 +4,8 @@ export class NewsItem extends Component {
 
   buttonColor = () => 
   {
-    switch (this.props.category) {
+    switch (this.props.category) 
+    {
       case "general":
         return "primary";
       case "business":
