@@ -21,9 +21,9 @@ export class News extends Component {
 
   defaultImage = "https://acadianakarate.com/wp-content/uploads/2017/04/default-image.jpg"
 
-  constructor()
+  constructor(props)
   {
-    super();
+    super(props);
     
     this.state = {
       articles: [],
@@ -31,6 +31,8 @@ export class News extends Component {
       page: 1,
       pageSize: 9
     }
+
+    document.title = `NewsMonkey - ${this.capitalize(this.props.category)}`
   }
 
   async updateNews()
@@ -130,11 +132,20 @@ export class News extends Component {
     }
   }
 
+  capitalize = (str) => 
+  {
+    return str.slice(0, 1).toUpperCase() + str.slice(1);
+  }
+
   render() {
     return (
       <div className='container my-3'>
           
-          <h1 className='text-center'><b>NewsMonkey - Top Headlines</b></h1>
+          <div className="headings text-center">
+            <h1><b>NewsMonkey - Top Headlines </b> </h1>
+            <h3 className='mt-3'>{this.capitalize(this.props.category)}</h3>
+          </div>
+
 
           {this.state.loading && <Spinner />}
 
