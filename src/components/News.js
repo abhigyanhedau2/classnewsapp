@@ -29,7 +29,7 @@ export class News extends Component {
       articles: [],
       loading: false,
       page: 1,
-      pageSize: 9
+      pageSize: 12
     }
 
     document.title = `NewsMonkey - ${this.capitalize(this.props.category)}`
