@@ -35,8 +35,32 @@ export class News extends Component {
     }
   }
 
+  getLoadingBarColor = () => 
+  {
+    switch (this.props.category) 
+    {
+      case "general":
+        return "#107cfc";
+      case "business":
+        return "#70747c";
+      case "entertainment":
+        return "#ffc41c";
+      case "health":
+        return "#18a4b4";
+      case "science":
+        return "#000000";
+      case "sports":
+        return "#28a444";
+      case "technology":
+        return "#e03444";    
+      default:
+        break;
+    }
+  }
+
   async updateNews()
   {
+    this.props.setLoadingBarColor(this.getLoadingBarColor());
     this.props.setProgress(10);
     
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=aae0d9c248904c479273d48fa73cf68d&page=${this.state.page}&pageSize=${this.props.pageSize}`;
