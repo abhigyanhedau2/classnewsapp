@@ -18,7 +18,7 @@ const News = (props) => {
     return str.slice(0, 1).toUpperCase() + str.slice(1);
   }
 
-  document.title = `${capitalize(props.category)} - NewsMonkey`;
+  document.title = `NewsMonkey - ${capitalize(props.category)}`;
 
   useEffect(() => {
     updateNews();
