@@ -65,18 +65,7 @@ export default class App extends Component {
 
         </div>
       </Router>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+    
       // <div>
       //   {/* business entertainment general health science sports technology */}
       //   <Navbar />
