@@ -18,12 +18,11 @@ const News = (props) => {
     return str.slice(0, 1).toUpperCase() + str.slice(1);
   }
 
-  document.title = `NewsMonkey - ${capitalize(props.category)}`;
-
   useEffect(() => {
+    document.title = `NewsMonkey - ${capitalize(props.category)}`;
     updateNews();
   }, [])
-  
+
 
   const getLoadingBarColor = () => {
     switch (props.category) {
@@ -116,9 +115,10 @@ const News = (props) => {
   }
 
   const fetchMoreData = async () => {
-    setPage(page + 1);
 
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=${props.apiKey}&page=${page + 1}&pageSize=${props.pageSize}`;
+
+    setPage(page + 1);
 
     let data = await fetch(url);
 
@@ -133,9 +133,9 @@ const News = (props) => {
     <>
       <div className='container my-3'>
 
-        <div className="headings text-center">
+        <div className="headings text-center mt-5 pt-3">
           <h1><b>NewsMonkey - Top Headlines </b> </h1>
-          <h3 className='mt-3'>{capitalize(props.category)}</h3>
+          <h4 className='mt-3'>{capitalize(props.category)}</h4>
         </div>
 
         {loading && <Spinner />}
